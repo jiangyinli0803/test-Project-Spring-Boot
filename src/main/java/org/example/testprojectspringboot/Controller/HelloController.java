@@ -1,10 +1,7 @@
 package org.example.testprojectspringboot.Controller;
 
 import org.example.testprojectspringboot.Model.Student;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/hello")
@@ -22,8 +19,13 @@ public class HelloController {
     }
 
     @PostMapping
-    public String printValue(Student value) {
+    public String printValue(@RequestBody Student value) {
         return "Hello " + value.firstName() + " " + value.lastName() ;
+    }
+
+    @GetMapping("/{name}")
+    public String greeting(@PathVariable String name) {
+        return "Hello " + name + "!";
     }
 
 }
